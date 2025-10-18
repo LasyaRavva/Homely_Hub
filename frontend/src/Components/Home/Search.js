@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import {DatePicker,Space} from "antd";
 
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllProperties } from "../../Store/Property/property-action";
 import { propertyAction } from "../../Store/Property/property-slice";
 

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ImagesUploading from "./ImagesUploading";
 import { useDispatch } from "react-redux";
 import {
-  accomodation,
   createAccomodation,
 } from "../../Store/Accomodation/Accomodation-action";
 import Amenities from "./Amenities";
