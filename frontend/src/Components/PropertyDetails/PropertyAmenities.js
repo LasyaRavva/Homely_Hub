@@ -7,7 +7,7 @@ const PropertyAmenities = ({ amenities }) => {
       <div className="amenities">
         {amenities.map((amenity,index) =>(
             <p key={index}>
-                <span className="material-symbols`-outlined">{amenity.icon}</span>
+                <span className="material-symbols-outlined">{amenity.icon}</span>
                 <span>{amenity.name}</span>
             </p>
         ))}
