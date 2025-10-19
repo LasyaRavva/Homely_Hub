@@ -22,17 +22,17 @@ const MyBookings = () => {
     dispatch(fetchBookingDetails(bookingId));
     navigate(`/user/booking/${bookingId}`);
    };
-   if(bookings.length===0 && !loading){
-   return<div>My Bookings are not available</div>
-   }
+  if((bookings && bookings.length===0) && !loading){
+  return<div>My Bookings are not available</div>
+  }
   return (
     <>
       <ProgressSteps />
       <div className="wow">
         {loading && <LoadingSpinner />}
         {!loading &&
-          bookings.length > 0 &&
-          bookings.map((booking) => (
+          (bookings && bookings.length > 0) &&
+          (bookings || []).map((booking) => (
             <div
               onClick={() => handleBookingClick(booking._id)}
               key={booking._id}

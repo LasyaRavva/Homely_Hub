@@ -49,17 +49,17 @@ const PropertyList = () => {
 
   return (
     <>
-      {properties.length === 0 ? (
+      {(properties && properties.length === 0) ? (
         <p className="not_found">"Property not found......"</p>
       ) : (
         <div className="propertylist">
-          {properties.map((property) => (
+          {(properties || []).map((property) => (
             <Card
               key={property._id}
               id={property._id}
-              image={property.images[0].url}
+              image={property.images[0]?.url}
               name={property.propertyName}
-              address={`${property.address.city}, ${property.address.state}, ${property.address.pincode}`}
+              address={`${property.address?.city}, ${property.address?.state}, ${property.address?.pincode}`}
               price={property.price}
             />
           ))}
@@ -72,7 +72,7 @@ const PropertyList = () => {
         <button
           className="previous_btn"
           onClick={() => setCurrentPage((prev) => ({ page: prev.page - 1 }))}
-          disabled={currentPage.page === 1} // disabling the previous button if you are in first page
+          disabled={currentPage.page === 1}
         >
           <span class="material-symbols-outlined">arrow_back_ios_new</span>
         </button>
@@ -85,7 +85,7 @@ const PropertyList = () => {
               page: prev.page + 1,
             }))
           }
-          disabled={properties.length < 12 || currentPage.page === lastpage}
+          disabled={((properties || []).length < 12) || currentPage.page === lastpage}
         >
           <span class="material-symbols-outlined">arrow_forward_ios</span>
         </button>
