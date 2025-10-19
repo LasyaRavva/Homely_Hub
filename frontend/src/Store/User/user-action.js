@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import { userActions } from "./user-slice";
 
 //handle user Signup

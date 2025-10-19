@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import { addBooking, setBookings, setBookingDetails } from "./booking-slice";
 
 

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../api/axios";
 import { accomodationActions } from "./Accomodation-slice";
 
 export const createAccomodation = (accomodationData) => async (dispatch) => {

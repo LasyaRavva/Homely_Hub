@@ -1,6 +1,6 @@
 import { setPaymentDetails } from "./payment-slice";
 import { CardNumberElement } from "@stripe/react-stripe-js";
-import axios from "axios";
+import axios from "../../api/axios";
 import { createBooking } from "../../Store/Booking/booking-action";
 
 export const processPayment = ({
