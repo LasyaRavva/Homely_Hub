@@ -60,9 +60,21 @@ const express = require(_0x401e3c(0xca)),
   propertyRoutes = require(_0x401e3c(0xce)),
   userRoutes = require(_0x401e3c(0xd2)),
   cookieParser = require("cookie-parser"),
+  cors = require("cors"),
   app = express();
-app[_0x401e3c(0xc9)](express[_0x401e3c(0xcc)]()),
-  app[_0x401e3c(0xc9)](cookieParser()),
-  app["use"](_0x401e3c(0xcf), propertyRoutes),
-  app[_0x401e3c(0xc9)]("/api/v1/rent/user", userRoutes),
-  (module["exports"] = app);
+
+// Allow CORS for Vercel frontend and localhost
+app.use(cors({
+  origin: [
+    "https://homely-hub-cmt1.vercel.app",
+    "https://homely-hub-ilhr.vercel.app",
+    "http://localhost:3000"
+  ],
+  credentials: true
+}));
+
+app[_0x401e3c(0xc9)](express[_0x401e3c(0xcc)]());
+app[_0x401e3c(0xc9)](cookieParser());
+app["use"](_0x401e3c(0xcf), propertyRoutes);
+app[_0x401e3c(0xc9)]("/api/v1/rent/user", userRoutes);
+module["exports"] = app;
