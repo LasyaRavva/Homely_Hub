@@ -90,4 +90,9 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok', time: new Date().toISOString() });
 });
 
+// Root API info (no DB)
+app.get('/api', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'HomelyHub API' });
+});
+
 module["exports"] = app;

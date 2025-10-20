@@ -2,6 +2,7 @@
 const serverless = require('serverless-http');
 const mongoose = require('mongoose');
 const path = require('path');
+const url = require('url');
 
 // Load env
 require('dotenv').config({ path: path.join(__dirname, '..', 'config.env') });
@@ -24,8 +25,16 @@ async function ensureDb() {
 
 module.exports = async (req, res) => {
   try {
-    // Skip DB connect for health checks
-    if (!req.url.startsWith('/api/health')) {
+    // Skip DB connect for health checks, root pings, and preflight
+    const pathname = url.parse(req.url).pathname || '/';
+    const skipDb =
+      req.method === 'OPTIONS' ||
+      pathname === '/' ||
+      pathname === '/api' ||
+      pathname === '/api/' ||
+      pathname === '/api/health';
+
+    if (!skipDb) {
       await ensureDb();
     }
     const handler = serverless(app);
