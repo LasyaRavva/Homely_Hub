@@ -20,9 +20,17 @@ const propertySlice = createSlice({
     },
     //Action to update properties state with fetch data
     getProperties(state, action) {
-      state.properties = action.payload.data;
-      state.totalProperties = action.payload.all_properties;
+      console.log('Reducer received payload:', action.payload);
+      console.log('Payload data:', action.payload?.data);
+      console.log('Payload all_properties:', action.payload?.all_properties);
+      
+      // Defensive: fallback if payload or data is missing
+      state.properties = action.payload?.data || [];
+      state.totalProperties = action.payload?.all_properties || 0;
       state.loading = false;
+      state.error = null; // Clear any previous errors
+      
+      console.log('State after update - properties count:', state.properties.length);
     },
 
     //Action to search parameters
@@ -39,6 +47,9 @@ const propertySlice = createSlice({
     //Action to update  error state
     getErrors(state, action) {
       state.error = action.payload;
+      state.loading = false;
+      state.properties = [];
+      state.totalProperties = 0;
     },
   },
 });
