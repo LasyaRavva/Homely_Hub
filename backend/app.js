@@ -84,4 +84,10 @@ app[_0x401e3c(0xc9)](express[_0x401e3c(0xcc)]());
 app[_0x401e3c(0xc9)](cookieParser());
 app["use"](_0x401e3c(0xcf), propertyRoutes);
 app[_0x401e3c(0xc9)]("/api/v1/rent/user", userRoutes);
+
+// Lightweight health endpoint (no DB access)
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok', time: new Date().toISOString() });
+});
+
 module["exports"] = app;

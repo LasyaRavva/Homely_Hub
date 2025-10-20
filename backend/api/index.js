@@ -24,7 +24,10 @@ async function ensureDb() {
 
 module.exports = async (req, res) => {
   try {
-    await ensureDb();
+    // Skip DB connect for health checks
+    if (!req.url.startsWith('/api/health')) {
+      await ensureDb();
+    }
     const handler = serverless(app);
     return handler(req, res);
   } catch (err) {
