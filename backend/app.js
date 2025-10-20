@@ -65,7 +65,7 @@ const express = require(_0x401e3c(0xca)),
 
 // Allow CORS for Vercel frontend and localhost
 // Use env var to allow origins in production; include localhost for dev
-const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || "http://localhost:3000,https://homely-hub-i1ei.vercel.app")
+const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || "http://localhost:3000,https://homely-hub-1edk.vercel.app")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
