@@ -64,13 +64,20 @@ const express = require(_0x401e3c(0xca)),
   app = express();
 
 // Allow CORS for Vercel frontend and localhost
+// Use env var to allow origins in production; include localhost for dev
+const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS || "http://localhost:3000,https://homely-hub-i1ei.vercel.app")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
 app.use(cors({
-  origin: [
-    "https://homely-hub-cmt1.vercel.app",
-    "https://homely-hub-ilhr.vercel.app",
-    "http://localhost:3000"
-  ],
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow no-origin requests (like curl or server-to-server)
+    if (!origin) return callback(null, true);
+    if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+    return callback(new Error("CORS not allowed for origin: " + origin));
+  },
+  credentials: true,
 }));
 
 app[_0x401e3c(0xc9)](express[_0x401e3c(0xcc)]());
